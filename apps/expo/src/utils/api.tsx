@@ -5,13 +5,13 @@ import { httpBatchLink } from "@trpc/client";
 import { createTRPCReact } from "@trpc/react-query";
 import superjson from "superjson";
 
-import type { AppRouter } from "@acme/api";
+import type { AppRouter } from "@t3test/api";
 
 /**
  * A set of typesafe hooks for consuming your API.
  */
 export const api = createTRPCReact<AppRouter>();
-export { type RouterInputs, type RouterOutputs } from "@acme/api";
+export { type RouterInputs, type RouterOutputs } from "@t3test/api";
 
 /**
  * Extend this function when going to production by
@@ -36,7 +36,7 @@ const getBaseUrl = () => {
       "Failed to get localhost. Please point to your production server.",
     );
   }
-  return `http://${localhost}:3000`;
+  return `https://909f-73-76-216-223.ngrok-free.app:3001`;
 };
 
 /**

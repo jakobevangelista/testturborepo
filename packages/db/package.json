@@ -1,5 +1,5 @@
 {
-  "name": "@acme/db",
+  "name": "@t3test/db",
   "version": "0.1.0",
   "private": true,
   "main": "./index.ts",
@@ -10,28 +10,33 @@
     "lint": "eslint .",
     "format": "prettier --check \"**/*.{mjs,ts,md,json}\"",
     "push": "drizzle-kit push:mysql",
+    "pull": "drizzle-kit introspect:mysql",
     "studio": "drizzle-kit studio",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@paralleldrive/cuid2": "^2.2.2",
     "@planetscale/database": "^1.11.0",
-    "drizzle-orm": "^0.28.6"
+    "drizzle-orm": "^0.28.6",
+    "luxon": "^3.4.3",
+    "mysql2": "^3.6.2"
   },
   "devDependencies": {
-    "@acme/eslint-config": "^0.2.0",
-    "@acme/prettier-config": "^0.1.0",
-    "@acme/tsconfig": "^0.1.0",
+    "@t3test/eslint-config": "^0.2.0",
+    "@t3test/prettier-config": "^0.1.0",
+    "@t3test/tsconfig": "^0.1.0",
+    "@types/luxon": "^3.3.3",
     "dotenv-cli": "^7.3.0",
     "drizzle-kit": "^0.19.13",
-    "eslint": "^8.52.0",
+    "eslint": "^8.51.0",
     "prettier": "^3.0.3",
     "typescript": "^5.2.2"
   },
   "eslintConfig": {
     "root": true,
     "extends": [
-      "@acme/eslint-config/base"
+      "@t3test/eslint-config/base"
     ]
   },
-  "prettier": "@acme/prettier-config"
+  "prettier": "@t3test/prettier-config"
 }

@@ -1,5 +1,5 @@
 {
-  "name": "@acme/nextjs",
+  "name": "@t3test/nextjs",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -10,13 +10,15 @@
     "format": "prettier --check \"**/*.{js,cjs,mjs,ts,tsx,md,json}\"",
     "start": "pnpm with-env next start",
     "typecheck": "tsc --noEmit",
-    "with-env": "dotenv -e ../../.env --"
+    "with-env": "dotenv -e ../../.env --",
+    "ngrok": "ngrok http 3001",
+    "ngrokauth": "ngrok config add-authtoken 2SMI5QLicPRvhsJyOZMr47jSTvt_ABKtogRZtz23k8vF2HnV"
   },
   "dependencies": {
-    "@acme/api": "^0.1.0",
-    "@acme/auth": "^0.1.0",
-    "@acme/db": "^0.1.0",
     "@t3-oss/env-nextjs": "^0.7.1",
+    "@t3test/api": "^0.1.0",
+    "@t3test/auth": "^0.1.0",
+    "@t3test/db": "^0.1.0",
     "@tanstack/react-query": "^4.35.7",
     "@tanstack/react-query-devtools": "^4.35.7",
     "@tanstack/react-query-next-experimental": "5.0.0-alpha.80",
@@ -31,10 +33,10 @@
     "zod": "^3.22.2"
   },
   "devDependencies": {
-    "@acme/eslint-config": "^0.2.0",
-    "@acme/prettier-config": "^0.1.0",
-    "@acme/tailwind-config": "^0.1.0",
-    "@acme/tsconfig": "^0.1.0",
+    "@t3test/eslint-config": "^0.2.0",
+    "@t3test/prettier-config": "^0.1.0",
+    "@t3test/tailwind-config": "^0.1.0",
+    "@t3test/tsconfig": "^0.1.0",
     "@types/node": "^18.18.7",
     "@types/react": "^18.2.28",
     "@types/react-dom": "^18.2.13",
@@ -47,10 +49,10 @@
   "eslintConfig": {
     "root": true,
     "extends": [
-      "@acme/eslint-config/base",
-      "@acme/eslint-config/nextjs",
-      "@acme/eslint-config/react"
+      "@t3test/eslint-config/base",
+      "@t3test/eslint-config/nextjs",
+      "@t3test/eslint-config/react"
     ]
   },
-  "prettier": "@acme/prettier-config"
+  "prettier": "@t3test/prettier-config"
 }
