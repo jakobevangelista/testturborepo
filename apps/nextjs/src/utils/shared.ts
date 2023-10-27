@@ -12,7 +12,8 @@ function getBaseUrl() {
 }
 
 export function getUrl() {
-  return getBaseUrl() + "/api/trpc";
+  // return getBaseUrl() + "/api/trpc";
+  return "https://testturborepo-nextjs.vercel.app" + "/api/trpc";
 }
 
 /**

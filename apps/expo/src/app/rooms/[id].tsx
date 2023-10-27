@@ -10,33 +10,35 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Link, useLocalSearchParams } from "expo-router";
 import { api } from "@/utils/api";
+import { useQueryClient } from "@tanstack/react-query";
 
-// interface Messages {
-//   id: string;
-//   content: string | null;
-//   createdAt: Date | null;
-//   updatedAt: Date | null;
-//   chatRoomId: string | null;
-// }
+// import { getQueryKey } from "@trpc/react-query";
+
 const Index = () => {
   const [message, setMessage] = useState<string>("");
-  //   const [messages, setMessages] = useState<Messages[]>();
-  const mutation = api.post.sendMessage.useMutation();
-  const { id } = useLocalSearchParams<{ id: string }>();
+  const queryClient = useQueryClient();
 
-  function createRoom() {
+  const mutation = api.post.sendMessage.useMutation({
+    onSuccess: () => {
+      // queryClient.invalidateQueries();
+    },
+  });
+  const { id } = useLocalSearchParams<{ id: string }>();
+  if (!id) return;
+
+  const { data } = api.post.getMessages.useQuery(id, {
+    refetchInterval: 1000,
+  });
+  function sendMessage() {
     if (!id) return;
     if (!message) return;
+    console.log(message);
     mutation.mutate({ roomId: id, message: message });
+    setMessage("");
+
+    // const sendMessageKey = getQueryKey(api.post.sendMessage);
   }
 
-  const { data } = api.post.getMessages.useQuery(id);
-  console.log(id);
-  console.log(data?.at(0));
-
-  //   useEffect(() => {
-  //     getMessages();
-  //   }, []);
   return (
     <SafeAreaView>
       <Link href="/">
@@ -52,7 +54,7 @@ const Index = () => {
         onChangeText={setMessage}
         placeholder="room name"
       />
-      <Button title="Send Message" onPress={createRoom} />
+      <Button title="Send Message" onPress={sendMessage} />
       <FlatList
         data={data}
         renderItem={({ item }) => (
