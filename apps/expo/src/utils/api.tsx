@@ -1,5 +1,5 @@
 import React from "react";
-import Constants from "expo-constants";
+// import Constants from "expo-constants";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { httpBatchLink } from "@trpc/client";
 import { createTRPCReact } from "@trpc/react-query";
@@ -27,16 +27,17 @@ const getBaseUrl = () => {
    * baseUrl to your production API URL.
    */
 
-  const debuggerHost = Constants.expoConfig?.hostUri;
-  const localhost = debuggerHost?.split(":")[0];
+  // const debuggerHost = Constants.expoConfig?.hostUri;
+  // const localhost = debuggerHost?.split(":")[0];
+  // const localhost = "https://testturborepo-nextjs.vercel.app/";
 
-  if (!localhost) {
-    // return "https://turbo.t3.gg";
-    throw new Error(
-      "Failed to get localhost. Please point to your production server.",
-    );
-  }
-  return `https://909f-73-76-216-223.ngrok-free.app:3001`;
+  // if (!localhost) {
+  //   // return "https://turbo.t3.gg";
+  //   throw new Error(
+  //     "Failed to get localhost. Please point to your production server.",
+  //   );
+  // }
+  return `https://testturborepo-nextjs.vercel.app`;
 };
 
 /**

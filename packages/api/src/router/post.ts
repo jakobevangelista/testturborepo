@@ -1,28 +1,28 @@
 import { z } from "zod";
 
-import { desc, eq, schema } from "@t3test/db";
+import { db, desc, eq, schema } from "@t3test/db";
 import { message, rooms } from "@t3test/db/schema/post";
 
 import { createTRPCRouter, publicProcedure } from "../trpc";
 
 export const postRouter = createTRPCRouter({
-  all: publicProcedure.query(({ ctx }) => {
-    // return ctx.db.select().from(schema.post).orderBy(desc(schema.post.id));
-    return ctx.db.query.post.findMany({ orderBy: desc(schema.post.id) });
-  }),
+  // all: publicProcedure.query(({ ctx }) => {
+  //   // return ctx.db.select().from(schema.post).orderBy(desc(schema.post.id));
+  //   return ctx.db.query.post.findMany({ orderBy: desc(schema.post.id) });
+  // }),
 
-  byId: publicProcedure
-    .input(z.object({ id: z.number() }))
-    .query(({ ctx, input }) => {
-      // return ctx.db
-      //   .select()
-      //   .from(schema.post)
-      //   .where(eq(schema.post.id, input.id));
+  // byId: publicProcedure
+  //   .input(z.object({ id: z.number() }))
+  //   .query(({ ctx, input }) => {
+  //     // return ctx.db
+  //     //   .select()
+  //     //   .from(schema.post)
+  //     //   .where(eq(schema.post.id, input.id));
 
-      return ctx.db.query.post.findFirst({
-        where: eq(schema.post.id, input.id),
-      });
-    }),
+  //     return ctx.db.query.post.findFirst({
+  //       where: eq(schema.post.id, input.id),
+  //     });
+  //   }),
 
   createRoom: publicProcedure
     .input(z.string().min(1))
@@ -37,8 +37,10 @@ export const postRouter = createTRPCRouter({
       });
     }),
 
-  getRooms: publicProcedure.query(({ ctx }) => {
-    return ctx.db.query.rooms.findMany();
+  getRooms: publicProcedure.query(async ({ ctx }) => {
+    const data = await db.query.rooms.findMany();
+    console.log(data);
+    return db.query.rooms.findMany();
   }),
 
   getMessages: publicProcedure
